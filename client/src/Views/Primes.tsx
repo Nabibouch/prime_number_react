@@ -1,18 +1,14 @@
 import EnterInput from "@/components/EnterInput";
-import usePrimiteStore from "@/Store/usePrimiteStore";
+import ResultCard from "@/components/ResultCard";
 
 const Primes = () => {
-  const number = usePrimiteStore((state) => state.number);
-  const visible = usePrimiteStore((state) => state.visible);
+
 
   return (
-    <>
-      <div className="flex flex-col items-center">
-        <EnterInput />
-        <span>{number}</span>
-        {visible ? "prime" : "false"}
-      </div>
-    </>
+    <div className="flex flex-col items-center justify-center flex-1 gap-6">
+      <EnterInput />
+      <ResultCard />
+    </div>
   );
 };
 
