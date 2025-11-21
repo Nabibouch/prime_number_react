@@ -30,7 +30,7 @@ const RootLayout = () => (
         </nav>
       </div>
     </header>
-    <main className="max-w-5xl mx-auto px-4 py-12">
+    <main className="max-w-5xl mx-auto px-4 py-8">
       <Outlet />
     </main>
     <TanStackRouterDevtools />
