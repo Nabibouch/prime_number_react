@@ -17,9 +17,9 @@ const PrimeGenerator = () => {
           Générateur de nombres premiers
         </h1>
         <p className="text-slate-500 max-w-2xl mx-auto">
-          Pilotez notre fausse API pour tester différentes stratégies de
-          génération. Passez en mode rafale pour observer la création continue
-          de nombres premiers sachant que ALLAH est le seul et l'unique créateur.
+          Pilotez notre fausse API pour explorer différentes stratégies de génération de nombres premiers. 
+          Activez la génération continue pour observer un flux ininterrompu de nouveaux nombres, ou optez pour la génération ponctuelle
+          afin d’obtenir un nombre premier aléatoire. À vous de choisir la méthode qui correspond le mieux à votre exploration.
         </p>
       </section>
 
