@@ -1,33 +1,86 @@
-import { create } from 'zustand';
-import { fetchNumberAlea } from '@/api/numberApi';
-
-function isPrime(n: number): boolean {
-  if (n < 2) return false;
-  if (n === 2) return true;
-  if (n % 2 === 0) return false;
-  for (let i = 3; i <= Math.sqrt(n); i += 2) { //sqrt veut dire square je sais que t'es ignorant et tu parles pas anglais
-    if (n % i === 0) return false;
-  }
-  return true;
-}
+import { create } from 'zustand'
+import { fetchPrimeCandidate, fetchPrimeWithRetry, isPrime } from '@/api/primeGenerator'
 
 interface PrimeGeneratorState {
-  prime: number | null;
-  isLoading: boolean;
-  generate: () => Promise<void>;
+  prime: number | null
+  history: number[] 
+  isLoading: boolean
+  isAuto: boolean
+  generateOnce: () => Promise<void>
+  generatePrimeOnly: () => Promise<void>
+  toggleAuto: () => Promise<void>
 }
 
-export const usePrimeGeneratorStore = create<PrimeGeneratorState>((set) => ({
+let autoTimeout: ReturnType<typeof setTimeout> | null = null
+
+const pushToHistory = (history: number[], value: number, limit = 10) => {
+  return [value, ...history].slice(0, limit)
+}
+
+export const usePrimeGeneratorStore = create<PrimeGeneratorState>((set, get) => ({
   prime: null,
+  history: [],
   isLoading: false,
-  generate: async () => {
-    set({ isLoading: true });
-    const { number } = await fetchNumberAlea();
+  isAuto: false,
+
+  generateOnce: async () => {
+    set({ isLoading: true })
+    const number = await fetchPrimeCandidate()
     if (isPrime(number)) {
-      set({ prime: number, isLoading: false });
+      set((state) => ({
+        prime: number,
+        history: pushToHistory(state.history, number),
+        isLoading: false,
+      }))
     } else {
-      set({ isLoading: false });
+      set({ isLoading: false })
     }
   },
-}));
+
+  generatePrimeOnly: async () => {
+    set({ isLoading: true })
+    try {
+      const prime = await fetchPrimeWithRetry()
+      set((state) => ({
+        prime,
+        history: pushToHistory(state.history, prime),
+        isLoading: false,
+      }))
+    } catch (error) {
+      set({ isLoading: false })
+      throw error
+    }
+  },
+
+  toggleAuto: async () => {
+    const { isAuto } = get()
+    if (isAuto) {
+      if (autoTimeout) {
+        clearTimeout(autoTimeout)
+        autoTimeout = null
+      }
+      set({ isAuto: false })
+      return
+    }
+
+    set({ isAuto: true })
+
+    const loop = async () => {
+      if (!get().isAuto) return
+      try {
+        const prime = await fetchPrimeWithRetry()
+        set((state) => ({
+          prime,
+          history: pushToHistory(state.history, prime),
+        }))
+      } catch {
+        set({ isAuto: false })
+        return
+      }
+      autoTimeout = setTimeout(loop, 500)
+    }
+
+    loop()
+  },
+}))
 
