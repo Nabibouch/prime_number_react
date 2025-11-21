@@ -26,7 +26,7 @@ const highlights = [
 function Index() {
   return (
     <div className="space-y-12">
-      <section className="rounded-3xl bg-gradient-to-br from-slate-900 via-purple-800 to-indigo-600 text-white px-8 py-14 shadow-2xl">
+      <section className="rounded-3xl bg-gradient-to-br from-slate-900 via-blue-800 to-blue-600 text-white px-8 py-14 shadow-2xl">
         <p className="text-sm uppercase tracking-widest text-white/70">
           PrimeLab
         </p>

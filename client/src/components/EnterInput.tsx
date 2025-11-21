@@ -23,8 +23,7 @@ const EnterInput = () => {
             />
             <Button 
             type="button" 
-            onClick={handleCheckPrime}
-            className="bg-blue-800">
+            onClick={handleCheckPrime}>
               Check !
             </Button>
           </form>
