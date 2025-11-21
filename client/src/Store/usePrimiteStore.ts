@@ -19,6 +19,8 @@ const usePrimiteStore = create<NumberState>((set, get) => ({
     prime: (input) => {
         const value = input ?? get().number;
 
+        set({number: input})
+
         if (value < 2) {
             set({ visible: false });
             return false;
