@@ -1,26 +1,45 @@
-import usePrimiteStore from "@/Store/usePrimiteStore";
-import { Hash } from "lucide-react";
-import { Card, CardContent } from "./ui/card";
+import usePrimiteStore from "@/Store/usePrimiteStore"
+import { CheckCircle2, XCircle } from "lucide-react"
+import { Card, CardContent } from "./ui/card"
 
 const ResultCard = () => {
   const number = usePrimiteStore((state) => state.number);
   const visible = usePrimiteStore((state) => state.visible);
 
-  const resultText = visible ? "PRIME" : "COMPOSITE";
-  const borderColor = visible ? "border-green-300" : "border-orange-300";
-  const iconBgColor = visible ? "bg-green-500" : "bg-orange-500";
-  const textColor = visible ? "text-green-500" : "text-orange-500";
+  if (number === 0) {
+    return null
+  }
+
+  const isPrime = visible;
+  const resultText = isPrime ? "PREMIER" : "COMPOSITE"
+  const borderColor = isPrime? "border-green-500/30" : "border-orange-500/30"
+  const iconBgColor = isPrime ? "bg-gradient-to-br from-green-500/20 to-green-600/20 border-green-500/20 text-green-400"
+    : "bg-gradient-to-br from-orange-500/20 to-orange-600/20 border-orange-500/20 text-orange-400"
+  const textColor = isPrime ? "text-green-400" : "text-orange-400"
+  const glowColor = isPrime? "shadow-green-500/20" : "shadow-orange-500/20"
 
   return (
-    <Card className={`${borderColor} bg-white rounded-lg shadow-sm`}>
-      <CardContent className="flex flex-col items-center justify-center p-8 gap-6">
-        <div className={`w-16 h-16 rounded-full ${iconBgColor} flex items-center justify-center`}>
-          <Hash className="w-8 h-8 text-white" />
+    <Card
+      className={`${borderColor} w-full max-w-2xl bg-slate-900/50 backdrop-blur-xl border shadow-2xl ${glowColor} transition-all hover:scale-105`}
+    >
+      <CardContent className="flex flex-col items-center justify-center p-12 gap-8">
+        <div
+          className={`w-20 h-20 rounded-full ${iconBgColor} border flex items-center justify-center shadow-lg transition-all`}
+        >
+          {isPrime ? (
+            <CheckCircle2 className="w-10 h-10" />
+          ) : (
+            <XCircle className="w-10 h-10" />
+          )}
         </div>
-        <div className="text-3xl font-bold text-center">
-          <span className="text-blue-600">{number}</span>
-          <span className="text-black"> is </span>
-          <span className={textColor}>{resultText}</span>
+        <div className="text-center space-y-4">
+          <div className="text-6xl md:text-7xl font-bold text-white mb-2">
+            {number}
+          </div>
+          <div className="text-2xl font-semibold text-slate-400">est</div>
+          <div className={`text-4xl md:text-5xl font-bold ${textColor}`}>
+            {resultText}
+          </div>
         </div>
       </CardContent>
     </Card>

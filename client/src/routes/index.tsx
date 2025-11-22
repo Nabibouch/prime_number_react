@@ -1,5 +1,5 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { Sparkles, Shield, Zap } from "lucide-react";
+import { createFileRoute, Link } from "@tanstack/react-router"
+import { Sparkles, Shield, Zap } from "lucide-react"
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -25,50 +25,74 @@ const highlights = [
 
 function Index() {
   return (
-    <div className="space-y-12">
-      <section className="rounded-3xl bg-gradient-to-br from-slate-900 via-blue-800 to-blue-600 text-white px-8 py-14 shadow-2xl">
-        <p className="text-sm uppercase tracking-widest text-white/70">
-          PrimeLab
-        </p>
-        <h1 className="mt-4 text-4xl font-semibold leading-tight">
-          Générateur de nombres premiers
-        </h1>
-        <p className="mt-4 text-white/80 text-lg max-w-2xl">
-          Explorez deux approches : vérification instantanée d'un nombre entré à
-          la main ou génération automatique via une fausse API.
-        </p>
-        <div className="mt-8 flex flex-wrap gap-4">
-          <Link
-            to="/prime-generator"
-            className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-slate-900 font-semibold shadow-lg shadow-white/20 hover:bg-slate-100 transition"
-          >
-            Démarrer le générateur
-          </Link>
-          <Link
-            to="/primes"
-            className="inline-flex items-center justify-center rounded-full border border-white/40 px-6 py-3 text-white font-semibold hover:bg-white/10 transition"
-          >
-            Tester un nombre
-          </Link>
+    <div className="space-y-24">
+      <section className="relative">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-transparent to-blue-500/10 blur-3xl" />
+        <div className="relative grid lg:grid-cols-2 gap-12 items-center">
+          <div className="space-y-8">
+            <div className="inline-block">
+              <span className="text-xs uppercase tracking-widest text-blue-400 font-semibold px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20">
+                PrimeLab
+              </span>
+            </div>
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-white">
+              Générateur de{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">
+                nombres premiers
+              </span>
+            </h1>
+            <p className="text-xl text-slate-300 leading-relaxed max-w-xl">
+              Explorez deux approches : vérification instantanée d'un nombre
+              entré à la main ou génération automatique via une fausse API
+              simulée.
+            </p>
+            <div className="flex flex-wrap gap-4 pt-4">
+              <Link
+                to="/prime-generator"
+                className="group inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-blue-500 text-white font-semibold hover:from-blue-500 hover:to-blue-400 transition-all shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 hover:scale-105"
+              >
+                Démarrer le générateur
+                <Sparkles className="w-5 h-5 group-hover:rotate-12 transition-transform" />
+              </Link>
+              <Link
+                to="/primes"
+                className="inline-flex items-center px-8 py-4 rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm text-white font-semibold hover:bg-white/10 hover:border-white/20 transition-all"
+              >
+                Tester un nombre
+              </Link>
+            </div>
+          </div>
+          <div className="hidden lg:block relative">
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-transparent rounded-3xl blur-2xl" />
+            <div className="relative aspect-square bg-gradient-to-br from-slate-800/50 to-blue-900/30 rounded-3xl border border-white/10 backdrop-blur-xl p-12 flex items-center justify-center">
+              <div className="text-center space-y-4">
+                <div className="text-8xl font-bold text-blue-400/50">7</div>
+                <div className="text-sm text-slate-400 uppercase tracking-widest">
+                  Nombre premier
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="grid gap-6 md:grid-cols-3">
+      <section className="grid md:grid-cols-3 gap-8">
         {highlights.map(({ icon: Icon, title, description }) => (
           <article
             key={title}
-            className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:shadow-md transition-shadow"
+            className="group relative p-8 rounded-2xl border border-white/5 bg-slate-900/30 backdrop-blur-sm hover:border-white/10 hover:bg-slate-900/50 transition-all duration-300"
           >
-            <div className="inline-flex items-center justify-center rounded-xl bg-slate-100 p-3 text-slate-700">
-              <Icon className="h-5 w-5" />
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="relative">
+              <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-br from-blue-500/20 to-blue-600/20 border border-blue-500/20 text-blue-300 mb-6 group-hover:scale-110 transition-transform">
+                <Icon className="w-6 h-6" />
+              </div>
+              <h3 className="text-xl font-semibold text-white mb-3">{title}</h3>
+              <p className="text-slate-400 leading-relaxed">{description}</p>
             </div>
-            <h3 className="mt-4 text-lg font-semibold text-slate-900">
-              {title}
-            </h3>
-            <p className="mt-2 text-sm text-slate-500">{description}</p>
           </article>
         ))}
       </section>
     </div>
-  );
+  )
 }
