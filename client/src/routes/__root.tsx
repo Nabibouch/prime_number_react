@@ -3,7 +3,7 @@ import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 
 const navLinks = [
   { to: "/", label: "Accueil" },
-  { to: "/primes", label: "Primes" },
+  { to: "/primes-checker", label: "Primes" },
   { to: "/prime-generator", label: "Générateur" },
 ];
 

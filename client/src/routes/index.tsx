@@ -45,7 +45,7 @@ function Index() {
             Démarrer le générateur
           </Link>
           <Link
-            to="/primes"
+            to="/primes-checker"
             className="inline-flex items-center justify-center rounded-full border border-white/40 px-6 py-3 text-white font-semibold hover:bg-white/10 transition"
           >
             Tester un nombre

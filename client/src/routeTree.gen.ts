@@ -9,13 +9,13 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as PrimesRouteImport } from './routes/primes'
+import { Route as PrimesCheckerRouteImport } from './routes/primes-checker'
 import { Route as PrimeGeneratorRouteImport } from './routes/prime-generator'
 import { Route as IndexRouteImport } from './routes/index'
 
-const PrimesRoute = PrimesRouteImport.update({
-  id: '/primes',
-  path: '/primes',
+const PrimesCheckerRoute = PrimesCheckerRouteImport.update({
+  id: '/primes-checker',
+  path: '/primes-checker',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrimeGeneratorRoute = PrimeGeneratorRouteImport.update({
@@ -32,40 +32,40 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/prime-generator': typeof PrimeGeneratorRoute
-  '/primes': typeof PrimesRoute
+  '/primes-checker': typeof PrimesCheckerRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/prime-generator': typeof PrimeGeneratorRoute
-  '/primes': typeof PrimesRoute
+  '/primes-checker': typeof PrimesCheckerRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/prime-generator': typeof PrimeGeneratorRoute
-  '/primes': typeof PrimesRoute
+  '/primes-checker': typeof PrimesCheckerRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/prime-generator' | '/primes'
+  fullPaths: '/' | '/prime-generator' | '/primes-checker'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/prime-generator' | '/primes'
-  id: '__root__' | '/' | '/prime-generator' | '/primes'
+  to: '/' | '/prime-generator' | '/primes-checker'
+  id: '__root__' | '/' | '/prime-generator' | '/primes-checker'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   PrimeGeneratorRoute: typeof PrimeGeneratorRoute
-  PrimesRoute: typeof PrimesRoute
+  PrimesCheckerRoute: typeof PrimesCheckerRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/primes': {
-      id: '/primes'
-      path: '/primes'
-      fullPath: '/primes'
-      preLoaderRoute: typeof PrimesRouteImport
+    '/primes-checker': {
+      id: '/primes-checker'
+      path: '/primes-checker'
+      fullPath: '/primes-checker'
+      preLoaderRoute: typeof PrimesCheckerRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/prime-generator': {
@@ -88,7 +88,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   PrimeGeneratorRoute: PrimeGeneratorRoute,
-  PrimesRoute: PrimesRoute,
+  PrimesCheckerRoute: PrimesCheckerRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

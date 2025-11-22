@@ -7,9 +7,9 @@ const ResultCard = () => {
   const visible = usePrimiteStore((state) => state.visible);
 
   const resultText = visible ? "PRIME" : "COMPOSITE";
-  const borderColor = visible ? "border-green-300" : "border-orange-300";
-  const iconBgColor = visible ? "bg-green-500" : "bg-orange-500";
-  const textColor = visible ? "text-green-500" : "text-orange-500";
+  const borderColor = visible ? "border-green-300" : "border-red-300";
+  const iconBgColor = visible ? "bg-green-500" : "bg-red-500";
+  const textColor = visible ? "text-green-500" : "text-red-500";
 
   return (
     <Card className={`${borderColor} bg-white rounded-lg shadow-sm`}>
