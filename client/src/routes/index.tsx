@@ -41,11 +41,6 @@ function Index() {
                 nombres premiers
               </span>
             </h1>
-            <p className="text-xl text-slate-300 leading-relaxed max-w-xl">
-              Explorez deux approches : vérification instantanée d'un nombre
-              entré à la main ou génération automatique via une fausse API
-              simulée.
-            </p>
             <div className="flex flex-wrap gap-4 pt-4">
               <Link
                 to="/prime-generator"
@@ -61,6 +56,12 @@ function Index() {
                 Tester un nombre
               </Link>
             </div>
+            <p className="text-xl text-slate-300 leading-relaxed max-w-xl">
+              Explorez deux approches : vérification instantanée d'un nombre
+              entré à la main ou génération automatique via une fausse API
+              simulée.
+            </p>
+            
           </div>
           <div className="hidden lg:block relative">
             <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-transparent rounded-3xl blur-2xl" />
