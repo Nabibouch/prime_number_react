@@ -3,7 +3,6 @@ import { create } from 'zustand';
 interface NumberState {
     number: number;
     visible: boolean;
-    setInput: (value: number) => void;
     prime: (value?: number) => boolean;
 }
 
@@ -11,11 +10,7 @@ const usePrimiteStore = create<NumberState>((set, get) => ({
     number: 0,
     visible: false,
 
-    setInput: (value) => {
-        set({ number: value });
-        get().prime(value);
-    },
-
+    
     prime: (input) => {
         const value = input ?? get().number;
 

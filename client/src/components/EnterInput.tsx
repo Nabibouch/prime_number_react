@@ -3,19 +3,20 @@ import { Card, CardContent } from "./ui/card"
 import { Input } from "./ui/input"
 import { Label } from "./ui/label"
 import { useEnterInput } from "../hooks/useEnterInput"
+import ResultCard from "./ResultCard"
 
 const EnterInput = () => {
   const { handleValueChange, handleCheckPrime, handleSubmit } = useEnterInput()
 
   return (
     <Card className="w-full max-w-2xl border-white/10 bg-slate-900/50 backdrop-blur-xl shadow-2xl">
-      <CardContent className="p-10 space-y-6">
-        <div className="text-center space-y-2 mb-8">
+      <CardContent className="px-5 pt-1 pb-3">
+        <div className="text-center mb-4">
           <Label htmlFor="input" className="text-xl font-semibold text-white">
             Entrez un nombre
           </Label>
         </div>
-        <form className="space-y-6" onSubmit={handleSubmit}>
+        <form className="space-y-5" onSubmit={handleSubmit}>
           <div className="space-y-2">
             <Input
               id="input"
@@ -26,6 +27,7 @@ const EnterInput = () => {
               required
             />
           </div>
+          <ResultCard />
           <Button
             type="button"
             onClick={handleCheckPrime}

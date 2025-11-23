@@ -20,11 +20,11 @@ const ResultCard = () => {
 
   return (
     <Card
-      className={`${borderColor} w-full max-w-2xl bg-slate-900/50 backdrop-blur-xl border shadow-2xl ${glowColor} transition-all hover:scale-105`}
+      className={`${borderColor} w-full max-w-1xl bg-slate-900/50 backdrop-blur-xl border shadow-2xl ${glowColor} transition-all`}
     >
-      <CardContent className="flex flex-col items-center justify-center p-12 gap-8">
+      <CardContent className="flex flex-col items-center justify-center p-2 gap-1">
         <div
-          className={`w-20 h-20 rounded-full ${iconBgColor} border flex items-center justify-center shadow-lg transition-all`}
+          className={`w-10 h-10 rounded-full ${iconBgColor} border flex items-center justify-center shadow-lg transition-all`}
         >
           {isPrime ? (
             <CheckCircle2 className="w-10 h-10" />
@@ -32,12 +32,12 @@ const ResultCard = () => {
             <XCircle className="w-10 h-10" />
           )}
         </div>
-        <div className="text-center space-y-4">
-          <div className="text-6xl md:text-7xl font-bold text-white mb-2">
+        <div className="text-center space-y-2">
+          <div className="text-xl md:text-2xl font-bold text-white mb-2">
             {number}
           </div>
-          <div className="text-2xl font-semibold text-slate-400">est</div>
-          <div className={`text-4xl md:text-5xl font-bold ${textColor}`}>
+          <div className="text-xl font-semibold text-slate-400">est</div>
+          <div className={`text-3xl md:text-2xl font-bold ${textColor}`}>
             {resultText}
           </div>
         </div>
