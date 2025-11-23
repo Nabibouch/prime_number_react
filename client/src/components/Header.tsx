@@ -16,7 +16,7 @@ const Header = () => {
           to="/"
           className="text-xl font-bold tracking-tight text-white hover:text-blue-300 transition-colors"
         >
-          PrimeMaroc
+          PrimeLab.
         </Link>
         <nav className="flex items-center gap-1">
           {navLinks.map((link) => (
