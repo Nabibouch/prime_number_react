@@ -58,8 +58,6 @@ export const usePrimeGeneratorStore = create<PrimeGeneratorState>()(
 
       toggleAuto: async () => {
         const { isAuto } = get()
-
-        // 1. STOP AUTO
         if (isAuto) {
           if (autoTimeout) {
             clearTimeout(autoTimeout)
@@ -69,7 +67,6 @@ export const usePrimeGeneratorStore = create<PrimeGeneratorState>()(
           return
         }
 
-        // 2. START AUTO
         set({ isAuto: true })
 
         const loop = async () => {
@@ -95,7 +92,6 @@ export const usePrimeGeneratorStore = create<PrimeGeneratorState>()(
     {
       name: 'prime-generator-store',
       partialize: (state) => ({
-        // 🔥 on persiste uniquement ça :
         prime: state.prime,
         history: state.history
       })

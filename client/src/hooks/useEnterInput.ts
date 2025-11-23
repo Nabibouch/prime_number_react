@@ -1,22 +1,22 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import usePrimiteStore from "../Store/usePrimiteStore";
 
 export const useEnterInput = () => {
   const prime = usePrimiteStore((state) => state.prime);
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState<number>(0);
 
-  const handleValueChange = (newValue: number) => {
+  const handleValueChange = useCallback((newValue: number) => {
     setValue(newValue);
-  };
+  }, []);
 
-  const handleCheckPrime = () => {
+  const handleCheckPrime = useCallback(() => {
     prime(value);
-  };
+  }, [prime, value]);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    handleCheckPrime();
-  };
+    prime(value);
+  }, [prime, value]);
 
   return {
     value,
@@ -25,4 +25,3 @@ export const useEnterInput = () => {
     handleSubmit,
   };
 };
-
